@@ -25,5 +25,5 @@ app.post('/login', (req, res) => {
     res.json({ payload: db[userId] });
 });
 
-app.listen(3000, () => console.log('Secure server running on http://localhost:3000'));
-
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Secure server running on port ${port}`));
