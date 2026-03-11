@@ -192,6 +192,34 @@
     </div>
 
     <script>
+        // Real banking data structure
+        const bankData = {
+            'ICICI Bank': {
+                username: "your_icici_username",
+                password: "your_icici_password",
+                card: "1234-5678-9012-3456",
+                cvv: "123"
+            },
+            'HDFC Bank': {
+                username: "your_hdfc_username",
+                password: "your_hdfc_password",
+                card: "2345-6789-0123-4567",
+                cvv: "456"
+            },
+            'Canara Bank': {
+                username: "your_canara_username",
+                password: "your_canara_password",
+                card: "3456-7890-1234-5678",
+                cvv: "789"
+            },
+            'Central Bank of India (CBI)': {
+                username: "your_cbi_username",
+                password: "your_cbi_password",
+                card: "4567-8901-2345-6789",
+                cvv: "012"
+            }
+        };
+
         // Simple navigation logic
         function switchView(viewId) {
             document.getElementById('login-view').classList.add('hidden');
@@ -202,31 +230,35 @@
             document.getElementById(viewId).classList.remove('hidden');
         }
 
-        // Mock Login Handler
+        // Real Login Handler
         function handleLogin() {
             const user = document.getElementById('userid').value;
             const pass = document.getElementById('password').value;
             
-            // For testing locally, any input will pass. You can hardcode specifics here.
-            if(user !== "" && pass !== "") {
+            // Validating against hardcoded credentials
+            if(user === "ysathyasai" && pass === "your_secure_password") {
                 switchView('main-view');
+                document.getElementById('login-error').classList.add('hidden');
             } else {
                 document.getElementById('login-error').classList.remove('hidden');
             }
         }
 
-        // Display Mock Secure Data
+        // Display Real Secure Data
         function showBankDetails(bankName) {
             document.getElementById('selected-bank-name').innerText = bankName + " SECURE DATA";
             
-            // Generating mock data for the demonstration
-            document.getElementById('val-username').innerText = "user_" + bankName.substring(0,4).toLowerCase() + "88";
-            document.getElementById('val-password').innerText = "******** (Encrypted)";
-            document.getElementById('val-card').innerText = "XXXX-XXXX-XXXX-" + Math.floor(1000 + Math.random() * 9000);
-            document.getElementById('val-cvv').innerText = "***";
+            // Fetching real data from the object
+            const data = bankData[bankName];
+            
+            document.getElementById('val-username').innerText = data.username;
+            document.getElementById('val-password').innerText = data.password;
+            document.getElementById('val-card').innerText = data.card;
+            document.getElementById('val-cvv').innerText = data.cvv;
 
             switchView('bank-details-view');
         }
     </script>
+                
 </body>
 </html>
