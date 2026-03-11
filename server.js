@@ -11,10 +11,9 @@ const db = {};
 // Save newly encrypted user data
 app.post('/register', (req, res) => {
     const { userId, payload } = req.body;
-    if (db[userId]) return res.status(400).json({ error: "User ID already exists." });
-    
+    // Removed the "already exists" check so you can update your own profile
     db[userId] = payload;
-    res.json({ message: "Encrypted profile saved to server." });
+    res.json({ message: "Success" });
 });
 
 // Retrieve encrypted vault for local decryption
