@@ -1,4 +1,4 @@
-const express = require('express');
+exress = require('express');
 const cors = require('cors');
 
 const app = express();
@@ -8,13 +8,17 @@ app.use(express.json());
 // Simulated Database (In-memory for this test)
 const db = {};
 
-// Save newly encrypted user data
+// Change your register route to this:
 app.post('/register', (req, res) => {
     const { userId, payload } = req.body;
-    // Removed the "already exists" check so you can update your own profile
-    db[userId] = payload;
+    
+    // We removed the "if (db[userId])" check to allow profile updates
+    db[userId] = payload; 
+    
+    console.log(`Data synced/updated for user: ${userId}`);
     res.json({ message: "Success" });
 });
+
 
 // Retrieve encrypted vault for local decryption
 app.post('/login', (req, res) => {
