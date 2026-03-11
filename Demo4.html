@@ -177,7 +177,8 @@
                 const response = await fetch(`${serverURL}/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ userId })
+                    body: JSON.stringify({ userId: userId, payload: encryptedPayload }) 
+                    
                 });
                 if (!response.ok) throw new Error("User ID not found.");
                 const data = await response.json();
